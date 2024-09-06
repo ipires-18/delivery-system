@@ -5,10 +5,10 @@ import mongoose from 'mongoose'
 import { router } from './router'
 import cors from 'cors'
 
-const connectDB = process.env.DB_HOST
+const connectDB = process.env.MONGODB_CONNECT_URI
 
 if (!connectDB) {
-  throw new Error('The DB_HOST environment variable is not set.');
+  throw new Error('The MONGODB_CONNECT_URI environment variable is not set.');
 }
 
 mongoose.connect(connectDB)
@@ -28,4 +28,4 @@ mongoose.connect(connectDB)
     console.log(`🟢 Server is running on http://localhost:${port}`)
   })
 })
-.catch(() => console.log('🔴 mongo is not connect'))
+.catch((error) => console.log('🔴 mongo is not connect', error))
